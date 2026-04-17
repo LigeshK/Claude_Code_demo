@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+
 export default function RegisterPage() {
-  return <p>Register – /register</p>;
+  redirect("/login?mode=register");
 }

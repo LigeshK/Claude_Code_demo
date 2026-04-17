@@ -24,7 +24,11 @@
       "mcp__plugin_playwright_playwright__browser_close",
       "Bash(bun run:*)",
       "Bash(find E:\\\\ClaudeCode\\\\ClaudeProject\\\\app *)",
-      "WebFetch(domain:better-auth.com)"
+      "WebFetch(domain:better-auth.com)",
+      "Bash(bun run *)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(grep -v '^$')",
+      "Bash(curl -s http://localhost:3000/login)"
     ]
   },
   "sandbox": {

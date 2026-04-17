@@ -1,4 +1,4 @@
-import { Database } from "bun:sqlite";
+import { Database, type SQLQueryBindings } from "bun:sqlite";
 import path from "path";
 
 const dbPath = process.env.DB_PATH ?? "data/app.db";
@@ -9,6 +9,7 @@ mkdirSync(path.dirname(dbPath), { recursive: true });
 
 export const db = new Database(dbPath, { create: true });
 
+db.run("PRAGMA busy_timeout = 5000;");
 db.run("PRAGMA journal_mode = WAL;");
 db.run("PRAGMA foreign_keys = ON;");
 
@@ -86,14 +87,14 @@ db.run("CREATE INDEX IF NOT EXISTS idx_notes_user_id     ON notes(user_id)");
 db.run("CREATE INDEX IF NOT EXISTS idx_notes_public_slug ON notes(public_slug)");
 db.run("CREATE INDEX IF NOT EXISTS idx_notes_is_public   ON notes(is_public)");
 
-export function query<T>(sql: string, params: unknown[] = []): T[] {
+export function query<T>(sql: string, params: SQLQueryBindings[] = []): T[] {
   return db.query(sql).all(...params) as T[];
 }
 
-export function get<T>(sql: string, params: unknown[] = []): T | undefined {
+export function get<T>(sql: string, params: SQLQueryBindings[] = []): T | undefined {
   return db.query(sql).get(...params) as T | undefined;
 }
 
-export function run(sql: string, params: unknown[] = []): void {
+export function run(sql: string, params: SQLQueryBindings[] = []): void {
   db.query(sql).run(...params);
 }
