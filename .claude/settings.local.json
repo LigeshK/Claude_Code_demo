@@ -22,7 +22,9 @@
       "mcp__plugin_playwright_playwright__browser_press_key",
       "mcp__plugin_playwright_playwright__browser_tabs",
       "mcp__plugin_playwright_playwright__browser_close",
-      "Bash(bun run:*)"
+      "Bash(bun run:*)",
+      "Bash(find E:\\\\ClaudeCode\\\\ClaudeProject\\\\app *)",
+      "WebFetch(domain:better-auth.com)"
     ]
   },
   "sandbox": {
