@@ -3,8 +3,9 @@
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
-export default function PublicNoteViewer({ content }: { content: object }) {
+export default function PublicNoteViewer({ content }: { content: Record<string, unknown> }) {
   const editor = useEditor({
+    immediatelyRender: false,
     extensions: [StarterKit.configure({ heading: { levels: [1, 2, 3] } })],
     content,
     editable: false,

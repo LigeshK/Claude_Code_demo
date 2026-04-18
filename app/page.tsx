@@ -1,6 +1,12 @@
+import { redirect } from "next/navigation";
+import { headers } from "next/headers";
+import { getSession } from "@/lib/auth";
 import Link from "next/link";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const session = await getSession(await headers());
+  if (session) redirect("/dashboard");
+
   return (
     <main className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="text-center space-y-4">

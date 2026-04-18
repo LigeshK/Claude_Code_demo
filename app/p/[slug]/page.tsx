@@ -17,7 +17,7 @@ export default async function PublicNotePage({ params }: Props) {
   const note = getNoteByPublicSlug(slug);
   if (!note) notFound();
 
-  const content = JSON.parse(note.contentJson) as object;
+  const content = JSON.parse(note.contentJson) as Record<string, unknown>;
 
   return (
     <>

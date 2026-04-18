@@ -11,8 +11,11 @@ export async function POST(
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const { id } = await params;
-  const { isPublic } = await req.json();
-  const note = setNotePublic(session.user.id, id, Boolean(isPublic));
+  const body = await req.json().catch(() => null);
+  if (!body || typeof body.isPublic !== "boolean") {
+    return NextResponse.json({ error: "Bad request" }, { status: 400 });
+  }
+  const note = setNotePublic(session.user.id, id, body.isPublic);
   if (!note) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   return NextResponse.json({
