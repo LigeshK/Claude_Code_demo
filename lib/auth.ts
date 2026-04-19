@@ -1,6 +1,8 @@
-import { betterAuth } from "better-auth";
-import { nextCookies } from "better-auth/next-js";
-import { db } from "./db";
+import { betterAuth } from 'better-auth';
+import { nextCookies } from 'better-auth/next-js';
+import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
+import { db } from './db';
 
 export const auth = betterAuth({
   database: db,
@@ -9,6 +11,12 @@ export const auth = betterAuth({
   plugins: [nextCookies()],
 });
 
-export async function getSession(headers: Headers) {
-  return auth.api.getSession({ headers });
+export async function getSession(requestHeaders: Headers) {
+  return auth.api.getSession({ headers: requestHeaders });
+}
+
+export async function requireAuth() {
+  const session = await getSession(await headers());
+  if (!session) redirect('/login');
+  return session;
 }

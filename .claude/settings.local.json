@@ -24,11 +24,39 @@
       "mcp__plugin_playwright_playwright__browser_close",
       "Bash(bun run:*)",
       "Bash(find E:\\\\ClaudeCode\\\\ClaudeProject\\\\app *)",
-      "WebFetch(domain:better-auth.com)"
+      "WebFetch(domain:better-auth.com)",
+      "Bash(bun run *)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(grep -v '^$')",
+      "Bash(curl -s http://localhost:3000/login)",
+      "Bash(curl -s \"https://unpkg.com/lucide-react@latest/dist/cjs/lucide-react.js\")",
+      "Bash(curl -s --max-time 10 \"https://unpkg.com/lucide-react@0.447.0/dist/esm/icons/index.js\")",
+      "Bash(curl -s --max-time 15 \"https://unpkg.com/lucide-react@latest/dist/lucide-react.js\")",
+      "Bash(curl -sI --max-time 10 \"https://unpkg.com/lucide-react@latest/dist/lucide-react.js\")",
+      "Bash(curl -s --max-time 20 \"https://unpkg.com/lucide-react@1.8.0/dist/lucide-react.js\")",
+      "Bash(curl -s --max-time 15 \"https://unpkg.com/lucide-react@1.8.0/\")",
+      "Bash(curl -s --max-time 15 \"https://unpkg.com/lucide-react@1.8.0/package.json\")",
+      "Bash(curl -s --max-time 25 \"https://unpkg.com/lucide-react@1.8.0/dist/cjs/lucide-react.js\")",
+      "Bash(node *)",
+      "Bash(npx tsc *)",
+      "Bash(bunx tsc *)"
     ]
   },
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Add",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && bun run format 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
   }
 }
