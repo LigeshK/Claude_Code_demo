@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useEditor, EditorContent } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
+import { useEditor, EditorContent } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
 
 export default function PublicNoteViewer({ content }: { content: Record<string, unknown> }) {
   const editor = useEditor({
@@ -11,7 +11,7 @@ export default function PublicNoteViewer({ content }: { content: Record<string, 
     editable: false,
     editorProps: {
       attributes: {
-        class: "prose prose-sm max-w-none focus:outline-none",
+        class: 'prose prose-sm max-w-none focus:outline-none',
       },
     },
   });
